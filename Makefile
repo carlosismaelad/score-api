@@ -1,15 +1,10 @@
-default: install
+.PHONY: dev docker-dev
 
-all: install build
+dev:
+	uvicorn score.app:app --reload --host 0.0.0.0 --port 8000
 
-.PHONY: install
-install:
-	cd docs && ./binary_install.sh
+docker-dev:
+	docker build -f Dockerfile.dev -t score:latest .
 
-.PHONY: build
-build:
-	cd docs && ./build.sh
-
-.PHONY: serve
-s serve:
-	cd docs && mdbook serve
+start-score:
+	docker run --rm -it -v $(shell pwd):/home/app/api -p 8000:8000 score
