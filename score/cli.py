@@ -13,7 +13,7 @@ main = typer.Typer(name="score CLI", add_completion=False)
 def shell():
   """Opens interactive shell"""
   _vars = {
-    "setting": settings,
+    "settings": settings,
     "engine": engine,
     "select": select,
     "session": Session(engine),
