@@ -6,6 +6,8 @@ from sqlmodel import Session, select
 from .config import settings
 from .db import engine
 from .models import User
+from .models.user import generate_username
+from .security import get_password_hash
 
 main = typer.Typer(name="score CLI", add_completion=False)
 
@@ -45,3 +47,28 @@ def user_list():
       table.add_row(*[getattr(user, field) for field in fields])
 
     Console().print(table)
+
+@main.command()
+def create_user(
+  name: str,
+  email: str,
+  password: str,
+  dept: str,
+  username: str | None = None,
+  currency: str = "USD"
+):
+  """Create user"""
+  with Session(engine) as session:
+    user = User(
+      name=name,
+      email=email,
+      password=password,
+      dept=dept,
+      username=username or generate_username(name),
+      currency=currency
+    )
+    session.add(user)
+    session.commit()
+    session.refresh(user)
+    typer.echo(f"created {user.name} user")
+    return user
