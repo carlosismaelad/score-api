@@ -1,5 +1,6 @@
 from typing import Optional
 from sqlmodel import Field, SQLModel
+from score.security import HashedPassword
 
 class User(SQLModel, table=True):
 
@@ -8,7 +9,7 @@ class User(SQLModel, table=True):
   username: str = Field(unique=True, nullable=False)
   avatar: Optional[str] = None
   bio: Optional[str] = None
-  password: str = Field(nullable=False)
+  password: HashedPassword
   name: str = Field(nullable=False)
   dept: str = Field(nullable=False)
   currency: str = Field(nullable=False)
@@ -16,5 +17,11 @@ class User(SQLModel, table=True):
   @property
   def superuser(self):
     return self.dept == "management"
+  
+def generate_username(name: str) -> str:
+  """Generate a slug from user.name
+  "Carlos Dourado" -> "carlos-dourado"
+  """
+  return name.lower().replace(" ", "-")
 
 
