@@ -10,10 +10,14 @@ annotated-doc==0.0.4
     # via fastapi
 anyio==4.12.0
     # via starlette
-bcrypt==5.0.0
-    # via passlib
+bcrypt==3.2.2
+    # via
+    #   -r requirements.in
+    #   passlib
 cffi==2.0.0
-    # via cryptography
+    # via
+    #   bcrypt
+    #   cryptography
 click==8.3.1
     # via
     #   typer
