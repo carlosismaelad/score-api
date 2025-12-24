@@ -105,5 +105,5 @@ typing-extensions==4.15.0
     #   pydantic
     #   sqlalchemy2-stubs
     #   typer
-uvicorn==0.38.0
+uvicorn==0.40.0
     # via -r requirements.in
