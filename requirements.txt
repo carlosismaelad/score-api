@@ -28,7 +28,7 @@ dynaconf==3.2.12
     # via -r requirements.in
 ecdsa==0.19.1
     # via python-jose
-fastapi==0.124.4
+fastapi==0.125.0
     # via
     #   -r requirements.in
     #   fastapi-pagination
