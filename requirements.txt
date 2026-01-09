@@ -32,7 +32,7 @@ fastapi==0.124.4
     # via
     #   -r requirements.in
     #   fastapi-pagination
-fastapi-pagination==0.15.3
+fastapi-pagination==0.15.4
     # via -r requirements.in
 greenlet==3.3.0
     # via sqlalchemy
