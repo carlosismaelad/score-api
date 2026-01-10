@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from score.routes.user import router as user_router
 
 app = FastAPI(
   title="score",
@@ -10,5 +11,5 @@ app = FastAPI(
 async def api_ok():
   return { "message" : "API ok!"}
 
-
+app.include_router(user_router, prefix="/user", tags=["user"])
 
